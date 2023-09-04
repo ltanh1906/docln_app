@@ -140,7 +140,7 @@ class Strangdoc(MDScreen):
             self.ids.parent_setting.pos_hint = {'center_y': 0.5, 'center_x': 0.5}
             self.ids.parent_setting.disabled = False
 
-    touch_pos = (0,0)
+    
     def toogleMenu(self):
             if(StaticPages.menu == 1):
                 StaticPages.menu = 0
@@ -159,11 +159,10 @@ class Strangdoc(MDScreen):
                 self.ids.bottom_menu.pos_hint = {'x': 0}
                 self.ids.btn_bookmark.opacity = 1
 
-    def scroll_view_touch_down(self, instance, touch, *args):
-        global touch_pos
-        touch_pos = touch.pos
+    def scroll_view_touch_down(self, instance, touch, *args): 
+        StaticPages.touch_pos = touch.pos
 
     def scroll_view_touch_up(self, instance, touch, *args):
-        global touch_pos
+        touch_pos = StaticPages.touch_pos
         if touch_pos == touch.pos:
             self.toogleMenu()

@@ -1,0 +1,398 @@
+<ContentCustomSheet@BoxLayout>:
+    orientation: "vertical"
+    size_hint_y: None
+    height: "400dp"
+
+    ScrollView:
+        MDGridLayout:
+            cols: 1
+            adaptive_height: True
+            MDGridLayout:
+                cols: 5
+                adaptive_height: True
+                vaglign: 
+                AnchorLayout:
+                    anchor_x: 'center'
+                    anchor_y: 'center'
+                    MDIconButton:
+                        icon: "star-outline"
+                        theme_text_color:"Custom"
+                        icon_size: "34sp"
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+                        icon_color: "#f5ab00"
+                AnchorLayout:
+                    anchor_x: 'center'
+                    anchor_y: 'center'
+                    MDIconButton:
+                        icon: "star-outline"
+                        theme_text_color:"Custom"
+                        icon_size: "34sp"
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+                        icon_color: "#f5ab00"
+                AnchorLayout:
+                    anchor_x: 'center'
+                    anchor_y: 'center'
+                    MDIconButton:
+                        icon: "star-outline"
+                        theme_text_color:"Custom"
+                        icon_size: "34sp"
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+                        icon_color: "#f5ab00"
+                AnchorLayout:
+                    anchor_x: 'center'
+                    anchor_y: 'center'
+                    MDIconButton:
+                        icon: "star-outline"
+                        theme_text_color:"Custom"
+                        icon_size: "34sp"
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+                        icon_color: "#f5ab00"
+                AnchorLayout:
+                    anchor_x: 'center'
+                    anchor_y: 'center'
+                    MDIconButton:
+                        icon: "star-outline"
+                        theme_text_color:"Custom"
+                        icon_size: "34sp"
+                        pos_hint: {'center_x': .5, 'center_y': .5}
+                        icon_color: "#f5ab00"
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: dp(10), dp(0)
+                adaptive_height: True
+                MDTextField:
+                    mode: "rectangle"
+                    multiline: True
+                    hint_text: "Đánh giá"
+                    pos_hint:{'center_x':.5,'center_y':.2}
+                    size_hint:1,None
+                    min_height:"150dp"
+                    max_height:"150dp"
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: dp(10), dp(10)
+                adaptive_height: True
+                MDRectangleFlatButton:
+                    text: "[b]Gửi đánh giá[/b]"
+                    theme_text_color: "Custom"
+                    md_bg_color: "#3400e7"
+                    line_color: "#3400e7"
+                    text_color: "white"
+                    elevation_normal: 0
+                    size_hint: 1, None
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+
+<SinfoNovel>:
+    name: 'SinfoNovel'
+    on_enter: 
+        self.load_volume()
+        self.draw_review()
+    MDBoxLayout:
+        orientation: "vertical"
+        Widget:
+            id: separator
+            size_hint_y: None
+            height: 60
+        MDBoxLayout:
+            orientation: "vertical"
+            padding: "8dp"
+            ScrollView:
+                id: scroll_view_info
+                MDGridLayout:
+                    padding: dp(10), dp(10)
+                    cols: 1
+                    spacing:10,10
+                    adaptive_height: True
+                    id: layout_content
+                    canvas.before:
+                        Color:
+                            rgba: get_color_from_hex("#ffffff")
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    canvas:
+                        Color:
+                            rgba: get_color_from_hex("#e5e7eb")
+                        Line:
+                            width: 1
+                            rectangle: self.x, self.y, self.width, self.height
+                    AsyncImage:
+                        source:"22.jpg"
+                        size_hint: 1, None
+                        height: 200
+                    MDLabel:
+                        padding: dp(10), dp(10)
+                        text: "[b][size=20]Kẻ ngây thơ, người từng trải, và câu chuyện tình của chúng tôi[/b]"
+                        markup : True
+                        halign: "center"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                    MDLabel:
+                        padding: dp(10), 0
+                        text: "[size=15][b]Tác giả:[/b] Kuou Haruki[/size]"
+                        markup : True
+                        halign: "left"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                    MDLabel:
+                        padding: dp(10), 0
+                        text: "[size=15][b]Minh hoạ:[/b] Konomi[/size]"
+                        markup : True
+                        halign: "left"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                    MDLabel:
+                        padding: dp(10), 0
+                        text: "[size=15][b]Tags:[/b] Comedy, Game, School Life, Psychological, Science Fiction[/size]"
+                        markup : True
+                        halign: "left"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                    MDGridLayout:
+                        cols: 2
+                        spacing:10,10
+                        adaptive_height: True
+                        cols_minimum: {0: 50}
+                        canvas:
+                            Color:
+                                rgb: get_color_from_hex("#d4dae2")
+                            Rectangle:
+                                pos: 0, layout_content.y
+                                size: layout_content.width, 2
+                        MDLabel:
+                            padding: dp(10), dp(7)
+                            text: "[size=15][b]Tình trạng:[/b][/size]"
+                            markup: True
+                            valign: "middle"
+                            halign: "left"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            adaptive_width: True
+                        MDChip:
+                            text: "[b]Hoàn thành[/b]"
+                            valign: "middle"
+                            halign: "left"
+                            md_bg_color: get_color_from_hex("#5cb85c")
+                            text_color: get_color_from_hex("#ffffff")
+                            on_press: root.click_test()
+                    # 3 nút yêu thích, đánh giá và chia sẻ
+                    Widget:
+                        id: separator
+                        size_hint_y: None
+                        height: 6
+                        padding: dp(0), dp(10)
+                    MDGridLayout:
+                        cols: 3
+                        spacing:10,30
+                        adaptive_height: True
+                        AnchorLayout:
+                            anchor_x: 'center'
+                            anchor_y: 'center'
+                            MDIconButton:
+                                icon: "heart-outline"
+                                theme_text_color:"Custom"
+                                icon_size: "34sp"
+                                icon_color: "#e22590"
+                        AnchorLayout:
+                            anchor_x: 'center'
+                            anchor_y: 'center'
+                            MDIconButton:
+                                icon: "star-outline"
+                                theme_text_color:"Custom"
+                                on_release: root.show_example_custom_bottom_sheet()
+                                icon_size: "34sp"
+                                icon_color: "#f5ab00"
+                        AnchorLayout:
+                            anchor_x: 'center'
+                            anchor_y: 'center'
+                            MDIconButton:
+                                icon: "share-variant"
+                                theme_text_color:"Custom"
+                                icon_size: "34sp"
+                                icon_color: "#749dfd"
+                        MDLabel:
+                            padding: dp(10), dp(0)
+                            text: "4159"
+                            valign: "middle"
+                            halign: "center"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                        MDLabel:
+                            padding: dp(10), dp(0)
+                            text: "Đánh giá"
+                            valign: "middle"
+                            halign: "center"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                        MDLabel:
+                            padding: dp(10), dp(0)
+                            text: "Chia sẻ"
+                            valign: "middle"
+                            halign: "center"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                    Widget:
+                        id: separator
+                        size_hint_y: None
+                        height: 6
+                        canvas:
+                            Color:
+                                rgb: get_color_from_hex("#d4dae2")
+                            Rectangle:
+                                pos: 0,self.pos[1]
+                                size: layout_content.width, 2
+                    # Cập nhật lần cuối
+                    MDGridLayout:
+                        cols: 2
+                        spacing:10,5
+                        adaptive_height: True
+                        MDLabel:
+                            padding: dp(10), dp(7)
+                            text: "Cập nhật lần cuối"
+                            theme_text_color: "Secondary"
+                            markup: True
+                            valign: "middle"
+                            halign: "right"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                        MDLabel:
+                            padding: dp(10), dp(7)
+                            text: "[size=20][b]18 giờ[/b][/size]"
+                            font_size: 18
+                            markup: True
+                            valign: "middle"
+                            halign: "left"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                    Widget:
+                        id: separator
+                        size_hint_y: None
+                        height: 6
+                        canvas:
+                            Color:
+                                rgb: get_color_from_hex("#d4dae2")
+                            Rectangle:
+                                pos: 0,self.pos[1]
+                                size: layout_content.width, 2
+                    # Số từ đánh giá lượt xem
+                    MDGridLayout:
+                        cols: 3
+                        spacing:10,5
+                        adaptive_height: True
+                        canvas:
+                            Color:
+                                rgb: get_color_from_hex("#d4dae2")
+                            Rectangle:
+                                pos: 0, layout_content.y
+                                size: layout_content.width, 2
+                        MDLabel:
+                            padding: dp(10), dp(7)
+                            text: "Số từ"
+                            theme_text_color: "Secondary"
+                            markup: True
+                            valign: "middle"
+                            halign: "center"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                        MDLabel:
+                            padding: dp(10), dp(7)
+                            text: "Đánh giá"
+                            theme_text_color: "Secondary"
+                            markup: True
+                            valign: "middle"
+                            halign: "center"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                        MDLabel:
+                            padding: dp(10), dp(7)
+                            text: "Lượt xem"
+                            theme_text_color: "Secondary"
+                            markup: True
+                            valign: "middle"
+                            halign: "center"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                        MDLabel:
+                            text: "794.935"
+                            bold: True
+                            markup: True
+                            valign: "middle"
+                            halign: "center"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                        MDLabel:
+                            text: "5.00 / 2"
+                            bold: True
+                            markup: True
+                            valign: "middle"
+                            halign: "center"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                        MDLabel:
+                            text: "1.709.331"
+                            markup: True
+                            bold: True
+                            valign: "middle"
+                            halign: "center"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                    Widget:
+                        id: separator
+                        size_hint_y: None
+                        height: 6
+                        canvas:
+                            Color:
+                                rgb: get_color_from_hex("#d4dae2")
+                            Rectangle:
+                                pos: 0,self.pos[1]
+                                size: layout_content.width, 2
+                    MDLabel:
+                        padding: dp(10), dp(0)
+                        text: "Tên khác:"
+                        bold: True
+                        valign: "middle"
+                        halign: "left"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                    MDLabel:
+                        padding: dp(10), dp(0)
+                        text: "ライアー・ライアー"
+                        valign: "middle"
+                        halign: "left"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                    Widget:
+                        id: separator
+                        size_hint_y: None
+                        height: 6
+                        canvas:
+                            Color:
+                                rgb: get_color_from_hex("#d4dae2")
+                            Rectangle:
+                                pos: 0,self.pos[1]
+                                size: layout_content.width, 2
+                    MDLabel:
+                        padding: dp(10), dp(0)
+                        text: "Tóm tắt:"
+                        bold: True
+                        valign: "middle"
+                        halign: "left"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                    MDLabel:
+                        padding: dp(10), dp(0)
+                        text: "Đảo học viện, nơi các học sinh mở ra những trận quyết đấu để quyết định rank (Game).  Tôi, Shinohara Hiroto đã đánh bại Saionji Sarasa, vị vua tuyệt đối ở kỳ năm ngoái ngay ngày chuyển trường đầu tiên rồi thăng lên thành 7 sao đỉnh cao với tốc độ nhanh nhất trong lịch sử học viện."
+                        valign: "middle"
+                        halign: "left"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                    MDBoxLayout:
+                        adaptive_height: True
+                        id: test_box
+                    MDBoxLayout:
+                        id: volume_list
+                        adaptive_height:True
+                        orientation:"vertical"
+                                
+
+

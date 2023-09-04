@@ -1,1150 +1,142 @@
 #:import get_color_from_hex kivy.utils.get_color_from_hex
-ScreenManager:
-    Strangdoc:
-    Strangchu:
-    
-    SinfoNovel:
-    Slogin:
+#: import Strangchu screens.Strangchu
+#: import Slogin screens.Slogin
+#: import Strangdoc screens.Strangdoc
+#: import SinfoNovel screens.SinfoNovel
+#: import SideMenu screens.SideMenu
 
-<Strangdoc>:
-    name: 'Strangdoc'
-    on_enter: self.load_text()
-    
-    MDBoxLayout:
-        orientation: "vertical"
-        # Srollview nội dung đọc
-        ScrollView:
-            id: scroll_view
-            size: (self.parent.width, self.parent.height)
-            do_scroll_x: False
-            do_scroll_y: True
-            MDGridLayout:
-                cols: 1
-                spacing:10,10
-                adaptive_height: True
-                id: layout_content
-                # on_double_tap: root.toogleMenu()
-                on_touch_down: root.scroll_view_touch_down(*args)
-                on_touch_up: root.scroll_view_touch_up(*args)
-                disabled: True
-                MDLabel:
-                    padding: dp(20), dp(10)
-                    text: "[b][size=17]Kẻ ngây thơ, [ref=Chú thích:Gì gì đó][u]người từng trải[/u][/ref], và câu chuyện tình của chúng tôi\nChương 01.5 - Nhật kí bí mật của Kurose Maria (3)\nĐộ dài: 218 từ - Cập nhật: 2 năm[/size][/b]"
-                    markup : True
-                    valign: "middle"
-                    halign: "center"
-                    size_hint_y: None
-                    height: self.texture_size[1]
-                    on_ref_press: root.show_tooltip_dialog(args[1])
-                MDLabel:
-                    padding: dp(20), dp(0)
-                    id: text_label
-                    text: 
-                    theme_text_color: "Secondary"
-                    halign: "justify"
-                    adaptive_height: True
-                    size_hint_y: None
-                    height: self.texture_size[1]
-                    markup : True
-                    line_height:1.75
-        # widget:Start Menu bottom
-    MDBottomNavigation:
-        id: bottom_menu
-        text_color_active: "black"
-        text_color: "black"
-        adaptive_height: True
-        size_hint_y: None
-        # ẩn hiện menu
-        height: dp(0)
-        pos_hint: {"x":0}
-        MDBottomNavigationItem:
-            icon: 'chevron-double-left'
-        MDBottomNavigationItem:
-            icon: 'home'
-            on_tab_press: setattr(root.manager, 'current', 'Strangchu')
-        MDBottomNavigationItem:
-            icon: 'bookmark-multiple'
-            on_tab_press: nav_drawer_doc.set_state("open")
-        MDBottomNavigationItem:
-            icon: 'information-variant'
-            on_tab_press: root.toogleSettings()
-        MDBottomNavigationItem:
-            icon: 'chevron-double-right'
-    # widget:End Menu
-    FloatLayout:
-        MDIconButton:
-            id: btn_bookmark
-            icon: "bookmark"
-            icon_size: "34sp"
-            pos_hint: {'top': 1, 'right': 1}  # Đặt nút ở phía trên bên phải
-            on_press: root.bookmark_pressed()
-        # Bảng settings
-    FloatLayout:
-        id: parent_setting
-        pos_hint: {'center_y': 0.5, 'center_x': 1.6}
-        size_hint: 1, 0.48
-        adaptive_height: True
-        canvas:
-            Color:
-                rgb: get_color_from_hex("#c3bdf0")
-            Rectangle:
-                pos: self.pos
-                size: self.size
-        
-        GridLayout:
-            id: widget_setting
+#: include screens/Strangchu.kv
+#: include screens/Strangdoc.kv
+#: include screens/Slogin.kv
+#: include screens/SinfoNovel.kv
+#: include screens/SideMenu.kv
+# ScreenManager:
+#     Strangdoc:
+#     Strangchu:
+#     SinfoNovel:      
+#     Slogin:
+<SearchBox@BoxLayout>:
+    orientation: "vertical"
+    size_hint_y: None
+    height: "150dp"
+
+    ScrollView:
+        MDGridLayout:
             cols: 1
-            pos_hint: {'x': 0, 'y': 0}
             adaptive_height: True
-            padding: dp(10), dp(0)
-            spacing: dp(0)
-            canvas:
-                Color:
-                    rgb: get_color_from_hex("#ffffff")
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
-            canvas.before:
-                Color:
-                    rgba: .5, .5, .5, 1
-                Line:
-                    width: 2
-                    rectangle: self.x, self.y, self.width, self.height
-            MDLabel:
-                padding: 0, dp(10)
-                text: "[b]Theme:[/b]"
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: dp(10), dp(0)
                 adaptive_height: True
-                markup: True
-            GridLayout:
-                cols: 3  # Số cột của grid layout
-                rows: 1
-                spacing: 5  # Khoảng cách giữa các ô vuông
-                padding: 0, 0
-                size_hint_y: None
-                height: 45
+                Widget:
+                    id: separator
+                    size_hint_y: None
+                    height: 20
+                MDTextField:
+                    mode: "rectangle"
+                    # multiline: True
+                    hint_text: "Tên truyên hoặc tác giả: "
+                    pos_hint:{'center_x':.5,'center_y':.2}
+                    size_hint:1,None
+                    min_height:"150dp"
+                    max_height:"150dp"
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: dp(10), dp(10)
+                adaptive_height: True
                 MDRectangleFlatButton:
-                    text: "Vani"
+                    text: "[b]TÌM KIẾM[/b]"
                     theme_text_color: "Custom"
-                    text_color: "black"
-                    line_color: get_color_from_hex("#eae4d3")
-                    md_bg_color: get_color_from_hex("#eae4d3")
-                    canvas.before:
-                        Color:
-                            rgba: get_color_from_hex("#eae4d3")
-                        Line:
-                            width: 2
-                            rectangle: self.x, self.y,self.width, self.height
-                MDRectangleFlatButton:
-                    text: "White"
-                    theme_text_color: "Custom"
-                    text_color: "black"
-                    line_color: get_color_from_hex("#ffffff")
-                    md_bg_color: get_color_from_hex("#ffffff")
-                    canvas.before:
-                        Color:
-                            rgba: get_color_from_hex("#ffffff")
-                        Line:
-                            width: 2
-                            rectangle: self.x, self.y,self.width, self.height
-                MDRectangleFlatButton:
-                    text: "Black"
-                    theme_text_color: "Custom"
+                    md_bg_color: "#3400e7"
+                    line_color: "#3400e7"
                     text_color: "white"
-                    line_color: get_color_from_hex("#222222")
-                    md_bg_color: get_color_from_hex("#222222")
-                    border_radius: [0]
-                    canvas.before:
-                        Color:
-                            rgba: get_color_from_hex("#222222")
-                        Line:
-                            width: 2
-                            rectangle: self.x, self.y,self.width, self.height
-            MDLabel:
-                padding: 0, dp(10)
-                adaptive_height: True
-                text: "[b]Font:[/b]"
-                markup: True
-            AnchorLayout:
-                anchor_x:'center'
-                adaptive_height: True
-                anchor_y:'center'
-                MDDropDownItem:
-                    adaptive_height: True
-                    id: drop_item
-                    valign: 'middle'
-                    halign: 'center'
-                    text: 'Times New Roman'
-                    on_release: root.menu.open()
-            MDLabel:
-                adaptive_height: True
-                text: "[b]Cỡ chữ:[/b]"
-                markup: True
-            MDGridLayout:
-                padding: 0, dp(10)
-                cols: 3
-                halign: "center"
-                valign: "middle"
-                size_hint_y: None
-                adaptive_height: True
-                MDRectangleFlatButton:
-                    text: "-"
-                    theme_text_color: "Custom"
-                    text_color: "white"
-                    line_color: get_color_from_hex("#36a189")
-                    md_bg_color: get_color_from_hex("#36a189")
-                    theme_icon_color: "Custom"
-                    icon_color: "orange"
-                MDLabel:
-                    text: "15"
-                    halign: "center"
-                MDRectangleFlatButton:
-                    text: "+"
-                    theme_text_color: "Custom"
-                    text_color: "white"
-                    line_color: get_color_from_hex("#36a189")
-                    md_bg_color: get_color_from_hex("#36a189")
-                    theme_icon_color: "Custom"
-                    icon_color: "orange"
-            MDLabel:
-                
-                adaptive_height: True
-                text: "[b]Căn lề:[/b]"
-                markup: True
-            MDGridLayout:
-                padding: 0, dp(10)
-                cols: 3
-                halign: "center"
-                valign: "middle"
-                size_hint_y: None
-                adaptive_height: True
-                MDRectangleFlatButton:
-                    text: "-"
-                    theme_text_color: "Custom"
-                    text_color: "white"
-                    line_color: get_color_from_hex("#36a189")
-                    md_bg_color: get_color_from_hex("#36a189")
-                    theme_icon_color: "Custom"
-                    icon_color: "orange"
-                MDLabel:
-                    text: "15"
-                    halign: "center"
-                MDRectangleFlatButton:
-                    text: "+"
-                    theme_text_color: "Custom"
-                    text_color: "white"
-                    line_color: get_color_from_hex("#36a189")
-                    md_bg_color: get_color_from_hex("#36a189")
-                    theme_icon_color: "Custom"
-                    icon_color: "orange"
-    # Side menu
-    MDNavigationDrawer:
-        id: nav_drawer_doc
-        radius: (0, 16, 16, 0)
-        anim_type: None
-        MDNavigationDrawerMenu:
-            MDNavigationDrawerHeader:
-                title: ""
-                text: "Kẻ ngây thơ, người từng trải và câu chuyện tình của chúng tôi"
-                max_lines: 1
-                spacing: "4dp"
-                padding: 0, 0, 0, dp(5)
-                BoxLayout:
-                    orientation: 'vertical'
-                    size_hint_x: None
-                    # canvas.before:
-                    #     Color:
-                    #         rgba: get_color_from_hex("#222222") 
-                    #     Rectangle:
-                    #         pos: self.pos
-                    #         size: self.size
-                    Image:
-                        adaptive_width: True
-                        id: header_image
-                        source: '22.jpg'  # Thay đổi đường dẫn của hình ảnh tại đây
-                        size_hint: None, 1  # Vô hiệu hóa kích thước tự động
-            MDNavigationDrawerDivider:
-            MDNavigationDrawerLabel:
-                text: "Bookmark"
-            DrawerClickableItem:
-                right_text: "[size=11]20/08/2023[/size]"
-                text: "[size=12]Bookmark 1[/size]"
-                markup: True
-                icon: "bookmark-outline"
-            DrawerClickableItem:
-                right_text: "[size=11]22/08/2023[/size]"
-                text: "[size=12]Bookmark 2[/size]"
-                markup: True
-                icon: "bookmark-outline"
-            DrawerClickableItem:
-                right_text: "[size=11]31/08/2023[/size]"
-                text: "[size=12]Bookmark 3[/size]"
-                markup: True
-                icon: "bookmark-outline"
+                    elevation_normal: 0
+                    size_hint: 1, None
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+<ContentNavigationDrawer>
+    MDNavigationDrawerMenu:
+        MDNavigationDrawerHeader:
+            title: "User"
+            title_font_size: "30sp"
+            text: "Welcome !!!"
+            text_color: "#a3a3a3"
+            text_font_size: "14sp"
+            max_lines: 1
+            spacing: "10dp"
+            padding: 0, 0, 0, dp(5)
+            source: "33.jpg"
+        MDNavigationDrawerDivider:
+        MDNavigationDrawerLabel:
+            text: "Menu"
+        DrawerClickableItem:
+            text: "[size=14]Trang chủ[/size]"
+            markup: True
+            icon: "home"
+            on_press:
+                root.nav_drawer.set_state("close")
+                root.screen_manager.current = "Strangchu"
+        DrawerClickableItem:
+            text: "[size=14]Bảng xếp hạng[/size]"
+            markup: True
+            icon: "medal"
+            on_press:
+                root.nav_drawer.set_state("close")
+                root.screen_manager.current = "Strangdoc"
+        DrawerClickableItem:
+            text: "[size=14]Danh sách[/size]"
+            markup: True
+            icon: "book-search"
+            on_release: app.show_search()
 
-            MDNavigationDrawerDivider:
+        MDNavigationDrawerDivider:
 
-            MDNavigationDrawerLabel:
-                text: "Volume 01"
-            DrawerClickableItem:
-                right_text: "[b][size=11]Ch1.[/size][/b]"
-                text: "[size=12]Kẻ ngây thơ, người từng trải, và câu chuyện tình của chúng tôi Chương 01.5 - Nhật kí bí mật của Kurose Maria Độ dài: 218 từ - Cập nhật: 2 năm[/size]"
-                markup: True
-                selected: True
-                icon: "vector-point"
-            DrawerClickableItem:
-                right_text: "[b][size=11]Ch2.[/size][/b]"
-                text: "[size=12]Trạng Thái, Trưởng Thành và Thay Đổi[/size]"
-                markup: True
-                icon: "vector-point"
-            MDNavigationDrawerDivider:
-
-<DrawerClickableItem@MDNavigationDrawerItem>
-    focus_color: "#e7e4c0"
-    text_color: "#4a4939"
-    icon_color: "#4a4939"
-    ripple_color: "#c5bdd2"
-    selected_color: "#0c6c4d"
-
-
-<DrawerLabelItem@MDNavigationDrawerItem>
-    text_color: "#4a4939"
-    icon_color: "#4a4939"
-    focus_behavior: False
-    selected_color: "#4a4939"
-    _no_ripple_effect: True
-
-
-
-
-<SinfoNovel>:
-    name: 'SinfoNovel'
-    on_enter: self.load_volume()
-    canvas.before:
-        Color:
-            rgba: get_color_from_hex("#f1f1f1")
-        Rectangle:
-            pos: self.pos
-            size: self.size
-    MDBoxLayout:
-        orientation: "vertical"
-
-        MDTopAppBar:
-            title: "Test App"
-            right_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
-      
-        MDBoxLayout:
-            orientation: "vertical"
-            padding: "8dp"
-            ScrollView:
-                id: scroll_view_info
-                MDGridLayout:
-                    padding: dp(10), dp(10)
-                    cols: 1
-                    spacing:10,10
-                    adaptive_height: True
-                    id: layout_content
-                    canvas.before:
-                        Color:
-                            rgba: get_color_from_hex("#ffffff")
-                        Rectangle:
-                            pos: self.pos
-                            size: self.size
-                    canvas:
-                        Color:
-                            rgba: get_color_from_hex("#e5e7eb")
-                        Line:
-                            width: 1
-                            rectangle: self.x, self.y, self.width, self.height
-                    AsyncImage:
-                        source:"22.jpg"
-                        size_hint: 1, None
-                        height: 200
-                    MDLabel:
-                        padding: dp(10), dp(10)
-                        text: "[b][size=20]Kẻ ngây thơ, người từng trải, và câu chuyện tình của chúng tôi[/b]"
-                        markup : True
-                        halign: "center"
-                        size_hint_y: None
-                        height: self.texture_size[1]
-                    MDLabel:
-                        padding: dp(10), 0
-                        text: "[size=15][b]Tác giả:[/b] Kuou Haruki[/size]"
-                        markup : True
-                        halign: "left"
-                        size_hint_y: None
-                        height: self.texture_size[1]
-                    MDLabel:
-                        padding: dp(10), 0
-                        text: "[size=15][b]Minh hoạ:[/b] Konomi[/size]"
-                        markup : True
-                        halign: "left"
-                        size_hint_y: None
-                        height: self.texture_size[1]
-                    MDLabel:
-                        padding: dp(10), 0
-                        text: "[size=15][b]Tags:[/b] Comedy, Game, School Life, Psychological, Science Fiction[/size]"
-                        markup : True
-                        halign: "left"
-                        size_hint_y: None
-                        height: self.texture_size[1]
-                    MDGridLayout:
-                        cols: 2
-                        spacing:10,10
-                        adaptive_height: True
-                        cols_minimum: {0: 50}
-                        canvas:
-                            Color:
-                                rgb: get_color_from_hex("#d4dae2")
-                            Rectangle:
-                                pos: 0, layout_content.y
-                                size: layout_content.width, 2
-                        MDLabel:
-                            padding: dp(10), dp(7)
-                            text: "[size=15][b]Tình trạng:[/b][/size]"
-                            markup: True
-                            valign: "middle"
-                            halign: "left"
-                            size_hint_y: None
-                            height: self.texture_size[1]
-                            adaptive_width: True
-                        MDChip:
-                            text: "[b]Hoàn thành[/b]"
-                            valign: "middle"
-                            halign: "left"
-                            md_bg_color: get_color_from_hex("#5cb85c")
-                            text_color: get_color_from_hex("#ffffff")
-                            on_press: root.click_test()
-                    # 3 nút yêu thích, đánh giá và chia sẻ
-                    Widget:
-                        id: separator
-                        size_hint_y: None
-                        height: 6
-                        padding: dp(0), dp(10)
-                    MDGridLayout:
-                        cols: 3
-                        spacing:10,30
-                        adaptive_height: True
-                        AnchorLayout:
-                            anchor_x: 'center'
-                            anchor_y: 'center'
-                            MDIconButton:
-                                icon: "heart-outline"
-                                theme_text_color:"Custom"
-                                icon_size: "34sp"
-                                icon_color: "#e22590"
-                        AnchorLayout:
-                            anchor_x: 'center'
-                            anchor_y: 'center'
-                            MDIconButton:
-                                icon: "star-outline"
-                                theme_text_color:"Custom"
-                                icon_size: "34sp"
-                                icon_color: "#f5ab00"
-                        AnchorLayout:
-                            anchor_x: 'center'
-                            anchor_y: 'center'
-                            MDIconButton:
-                                icon: "share-variant"
-                                theme_text_color:"Custom"
-                                icon_size: "34sp"
-                                icon_color: "#749dfd"
-                        MDLabel:
-                            padding: dp(10), dp(0)
-                            text: "4159"
-                            valign: "middle"
-                            halign: "center"
-                            size_hint_y: None
-                            height: self.texture_size[1]
-                        MDLabel:
-                            padding: dp(10), dp(0)
-                            text: "Đánh giá"
-                            valign: "middle"
-                            halign: "center"
-                            size_hint_y: None
-                            height: self.texture_size[1]
-                        MDLabel:
-                            padding: dp(10), dp(0)
-                            text: "Chia sẻ"
-                            valign: "middle"
-                            halign: "center"
-                            size_hint_y: None
-                            height: self.texture_size[1]
-                    Widget:
-                        id: separator
-                        size_hint_y: None
-                        height: 6
-                        canvas:
-                            Color:
-                                rgb: get_color_from_hex("#d4dae2")
-                            Rectangle:
-                                pos: 0,self.pos[1]
-                                size: layout_content.width, 2
-                    # Cập nhật lần cuối
-                    MDGridLayout:
-                        cols: 2
-                        spacing:10,5
-                        adaptive_height: True
-                        MDLabel:
-                            padding: dp(10), dp(7)
-                            text: "Cập nhật lần cuối"
-                            theme_text_color: "Secondary"
-                            markup: True
-                            valign: "middle"
-                            halign: "right"
-                            size_hint_y: None
-                            height: self.texture_size[1]
-                        MDLabel:
-                            padding: dp(10), dp(7)
-                            text: "[size=20][b]18 giờ[/b][/size]"
-                            font_size: 18
-                            markup: True
-                            valign: "middle"
-                            halign: "left"
-                            size_hint_y: None
-                            height: self.texture_size[1]
-                    Widget:
-                        id: separator
-                        size_hint_y: None
-                        height: 6
-                        canvas:
-                            Color:
-                                rgb: get_color_from_hex("#d4dae2")
-                            Rectangle:
-                                pos: 0,self.pos[1]
-                                size: layout_content.width, 2
-                    # Số từ đánh giá lượt xem
-                    MDGridLayout:
-                        cols: 3
-                        spacing:10,5
-                        adaptive_height: True
-                        canvas:
-                            Color:
-                                rgb: get_color_from_hex("#d4dae2")
-                            Rectangle:
-                                pos: 0, layout_content.y
-                                size: layout_content.width, 2
-                        MDLabel:
-                            padding: dp(10), dp(7)
-                            text: "Số từ"
-                            theme_text_color: "Secondary"
-                            markup: True
-                            valign: "middle"
-                            halign: "center"
-                            size_hint_y: None
-                            height: self.texture_size[1]
-                        MDLabel:
-                            padding: dp(10), dp(7)
-                            text: "Đánh giá"
-                            theme_text_color: "Secondary"
-                            markup: True
-                            valign: "middle"
-                            halign: "center"
-                            size_hint_y: None
-                            height: self.texture_size[1]
-                        MDLabel:
-                            padding: dp(10), dp(7)
-                            text: "Lượt xem"
-                            theme_text_color: "Secondary"
-                            markup: True
-                            valign: "middle"
-                            halign: "center"
-                            size_hint_y: None
-                            height: self.texture_size[1]
-                        MDLabel:
-                            text: "794.935"
-                            bold: True
-                            markup: True
-                            valign: "middle"
-                            halign: "center"
-                            size_hint_y: None
-                            height: self.texture_size[1]
-                        MDLabel:
-                            text: "5.00 / 2"
-                            bold: True
-                            markup: True
-                            valign: "middle"
-                            halign: "center"
-                            size_hint_y: None
-                            height: self.texture_size[1]
-                        MDLabel:
-                            text: "1.709.331"
-                            markup: True
-                            bold: True
-                            valign: "middle"
-                            halign: "center"
-                            size_hint_y: None
-                            height: self.texture_size[1]
-                    Widget:
-                        id: separator
-                        size_hint_y: None
-                        height: 6
-                        canvas:
-                            Color:
-                                rgb: get_color_from_hex("#d4dae2")
-                            Rectangle:
-                                pos: 0,self.pos[1]
-                                size: layout_content.width, 2
-                    MDLabel:
-                        padding: dp(10), dp(0)
-                        text: "Tên khác:"
-                        bold: True
-                        valign: "middle"
-                        halign: "left"
-                        size_hint_y: None
-                        height: self.texture_size[1]
-                    MDLabel:
-                        padding: dp(10), dp(0)
-                        text: "ライアー・ライアー"
-                        valign: "middle"
-                        halign: "left"
-                        size_hint_y: None
-                        height: self.texture_size[1]
-                    Widget:
-                        id: separator
-                        size_hint_y: None
-                        height: 6
-                        canvas:
-                            Color:
-                                rgb: get_color_from_hex("#d4dae2")
-                            Rectangle:
-                                pos: 0,self.pos[1]
-                                size: layout_content.width, 2
-                    MDLabel:
-                        padding: dp(10), dp(0)
-                        text: "Tóm tắt:"
-                        bold: True
-                        valign: "middle"
-                        halign: "left"
-                        size_hint_y: None
-                        height: self.texture_size[1]
-                    MDLabel:
-                        padding: dp(10), dp(0)
-                        text: "Đảo học viện, nơi các học sinh mở ra những trận quyết đấu để quyết định rank (Game).  Tôi, Shinohara Hiroto đã đánh bại Saionji Sarasa, vị vua tuyệt đối ở kỳ năm ngoái ngay ngày chuyển trường đầu tiên rồi thăng lên thành 7 sao đỉnh cao với tốc độ nhanh nhất trong lịch sử học viện."
-                        valign: "middle"
-                        halign: "left"
-                        size_hint_y: None
-                        height: self.texture_size[1]
-                    MDBoxLayout:
-                        id: volume_list
-                        adaptive_height:True
-                        orientation:"vertical"
-    MDNavigationDrawer:
-        id: nav_drawer
-        radius: (0, 16, 16, 0)
-
-        MDNavigationDrawerMenu:
-            MDNavigationDrawerHeader:
-                title: "Admin"
-                title_font_size: "30sp"
-                text: "User Permission"
-                text_color: "#a3a3a3"
-                text_font_size: "14sp"
-                max_lines: 1
-                spacing: "10dp"
-                padding: 0, 0, 0, dp(5)
-                source: "33.jpg"
-            MDNavigationDrawerDivider:
-            MDNavigationDrawerLabel:
-                text: "Menu"
-            DrawerClickableItem:
-                text: "[size=14]Trang chủ[/size]"
-                markup: True
-                icon: "home"
-            DrawerClickableItem:
-                text: "[size=14]Bảng xếp hạng[/size]"
-                markup: True
-                icon: "medal"
-            DrawerClickableItem:
-                text: "[size=14]Danh sách[/size]"
-                markup: True
-                icon: "book-search"
-
-            MDNavigationDrawerDivider:
-
-            MDNavigationDrawerLabel:
-                text: "User"
-            DrawerClickableItem:
-                right_text: "[b][size=14]23[/size][/b]"
-                text: "[size=14]Theo dõi[/size]"
-                markup: True
-                selected: True
-                icon: "heart"
-            DrawerClickableItem:
-                right_text: "[b][size=14]0[/size][/b]"
-                text: "[size=14]Bài đăng[/size]"
-                markup: True
-                icon: "file-document-multiple-outline"
-            DrawerClickableItem:
-                text: "[size=14]Đổi mật khẩu[/size]"
-                markup: True
-                icon: "lock"
-            DrawerClickableItem:
-                text: "[size=14]Đăng xuất[/size]"
-                markup: True
-                icon: "logout"
-            MDNavigationDrawerDivider:
-
-<DrawerClickableItem@MDNavigationDrawerItem>
-    focus_color: "#e7e4c0"
-    text_color: "#4a4939"
-    icon_color: "#4a4939"
-    ripple_color: "#c5bdd2"
-    selected_color: "#0c6c4d"
-
-
-<DrawerLabelItem@MDNavigationDrawerItem>
-    text_color: "#4a4939"
-    icon_color: "#4a4939"
-    focus_behavior: False
-    selected_color: "#4a4939"
-    _no_ripple_effect: True
-
-<Strangchu>:
-    name: 'Strangchu'
-    # on_enter: self.load_post()
-
-    MDBoxLayout:
-        orientation: "vertical"
-
-        MDTopAppBar:
-            title: "Test App"
-            right_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
-      
-        MDBoxLayout:
-            orientation: "vertical"
-            padding: "8dp"
-
-            ScrollView:
-
-                MDGridLayout:
-                    cols: 1
-                    adaptive_height: True
-                    # md_bg_color: get_color_from_hex("#c3bdf0")
-                    spacing:10,10
-                    Widget:
-                        id: separator
-                        size_hint_y: None
-                        height: 6
-                        padding: dp(0), dp(10)
-                    MDLabel:
-                        markup : True
-                        theme_text_color: "Hint"
-                        halign: "left"
-                        valign: "middle"
-                        text: "[size=20][color=#ffffff][b]CHƯƠNG [/b][/color] [color=#000000][u][b]MỚI[/b][/color][/u][/size]"
-                        adaptive_height: True
-                        padding: dp(4), dp(2)
-                        canvas.before:
-                            Color:
-                                rgba: get_color_from_hex("#292929")
-                            Rectangle:
-                                pos: self.pos
-                                size: self.width*0.25,self.height
-                    MDGridLayout:
-                        cols: 3
-                        orientation: "lr-tb"
-                        size_hint_y: None
-                        row_default_height: 100
-                        row_force_default: True
-                        AsyncImage:
-                            source: "2.jpg"
-                            size_hint_x: None
-                            height: self.height
-                        BoxLayout:
-                            orientation: 'vertical'
-                            adaptive_height: True
-                            FloatLayout:
-                                adaptive_height: True
-                                MDLabel:
-                                    text: "[b][size=17]This is title of the book[/size][/b]"
-                                    markup : True
-                                    pos_hint: {'right': 1, 'top': 1}
-                                    halign: "left"
-                            AnchorLayout:
-                                anchor_x:'left'
-                                anchor_y:'center'    
-                                MDLabel:
-                                    text: "[size=12]This is description of the book.This is description of the book.This isdescription of the book.This is description of the book..This isdescription of the book.This is description of the book..This isdescription of the book.This is description of the book.[/size]"
-                                    markup : True
-                                    max_lines: 3
-                            AnchorLayout:
-                                anchor_x:'left'
-                                anchor_y:'bottom'   
-                                MDLabel:
-                                    markup : True
-                                    theme_text_color: "Hint"
-                                    halign: "left"
-                                    valign: "middle"
-                                    text: "[color=#ffffff][b][size=12]Chương 1[/size][/b][/color]"
-                                    adaptive_width: True
-                                    adaptive_height: True
-                                    padding: dp(4), dp(2)
-                                    canvas.before:
-                                        Color:
-                                            rgba: get_color_from_hex("#17deb3")
-                                        Rectangle:
-                                            pos: self.pos
-                                            size: self.width*0.9,self.height
+        MDNavigationDrawerLabel:
+            text: "User"
+        DrawerClickableItem:
+            right_text: "[b][size=14]23[/size][/b]"
+            text: "[size=14]Theo dõi[/size]"
+            markup: True
+            selected: True
+            icon: "heart"
+        DrawerClickableItem:
+            text: "[size=14]Đổi mật khẩu[/size]"
+            markup: True
+            icon: "lock"
+        DrawerClickableItem:
+            text: "[size=14]Đăng xuất[/size]"
+            markup: True
+            icon: "logout"
+            on_press:
+                root.nav_drawer.set_state("close")
+                root.screen_manager.current = "Slogin"
+        MDNavigationDrawerDivider:
                     
-                    
-                    MDGridLayout:
-                        cols: 3
-                        orientation: "lr-tb"
-                        size_hint_y: None
-                        row_default_height: 100
-                        row_force_default: True
-                        AsyncImage:
-                            source: "3.jpg"
-                            size_hint_x: None
-                            height: self.height
-                        BoxLayout:
-                            orientation: 'vertical'
-                            adaptive_height: True
-                            FloatLayout:
-                                adaptive_height: True
-                                MDLabel:
-                                    text: "[b][size=17]This is title of the book[/size][/b]"
-                                    markup : True
-                                    pos_hint: {'right': 1, 'top': 1}
-                                    halign: "left"
-                            AnchorLayout:
-                                anchor_x:'left'
-                                anchor_y:'center'    
-                                MDLabel:
-                                    text: "[size=12]This is description of the book.This is description of the book.This isdescription of the book.This is description of the book..This isdescription of the book.This is description of the book..This isdescription of the book.This is description of the book.[/size]"
-                                    markup : True
-                                    max_lines: 3
-                            AnchorLayout:
-                                anchor_x:'left'
-                                anchor_y:'bottom'   
-                                MDLabel:
-                                    markup : True
-                                    theme_text_color: "Hint"
-                                    halign: "left"
-                                    valign: "middle"
-                                    text: "[color=#ffffff][b][size=12]Chương 1[/size][/b][/color]"
-                                    adaptive_width: True
-                                    adaptive_height: True
-                                    padding: dp(4), dp(2)
-                                    canvas.before:
-                                        Color:
-                                            rgba: get_color_from_hex("#17deb3")
-                                        Rectangle:
-                                            pos: self.pos
-                                            size: self.width*0.9,self.height
-                    Widget:
-                        id: separator
-                        size_hint_y: None
-                        height: 6
-                        padding: dp(0), dp(10)
-                    MDLabel:
-                        markup : True
-                        theme_text_color: "Hint"
-                        halign: "left"
-                        valign: "middle"
-                        text: "[size=20][color=#ffffff][b]SÁNG TÁC [/b][/color] [color=#000000][u][b]MỚI[/b][/color][/u][/size]"
-                        adaptive_height: True
-                        padding: dp(4), dp(2)
-                        canvas.before:
-                            Color:
-                                rgba: get_color_from_hex("#292929")
-                            Rectangle:
-                                pos: self.pos
-                                size: self.width*0.28,self.height
-                    MDGridLayout:
-                        cols: 2
-                        adaptive_height: True
-                        padding: dp(4), dp(4)
-                        spacing: dp(10)
-                        MDSmartTile:
-                            lines: 1
-                            source: "3.jpg"
-                            size_hint_y: None
-                            height: "200dp"
-                            on_press: setattr(root.manager, 'current', 'SinfoNovel')
-                            MDLabel:
-                                text: "[color=#ffffff][b][size=14]This is title of the book[/size][/b][/color]\n[color=#17deb3][size=11]Chương 1[/size][/color]"
-                                markup : True
-                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                                halign: "left"
-                                shorten: False
-
-                        MDSmartTile:
-                            source: "2.jpg"
-                            size_hint_y: None
-                            height: "200dp"
-                            MDLabel:
-                                text: "[color=#ffffff][b][size=14]This is title of the book[/size][/b][/color]\n[color=#17deb3][size=11]Chương 1[/size][/color]"
-                                markup : True
-                                pos_hint: {'right': 1, 'top': 1}
-                                halign: "left"
-                                shorten: False
-                        MDSmartTile:
-                            lines: 1
-                            source: "3.jpg"
-                            size_hint_y: None
-                            height: "200dp"
-                            MDLabel:
-                                text: "[color=#ffffff][b][size=14]This is title of the book[/size][/b][/color]\n[color=#17deb3][size=11]Chương 1[/size][/color]"
-                                markup : True
-                                pos_hint: {'right': 1, 'top': 1}
-                                halign: "left"
-                                shorten: False
-                        MDSmartTile:
-                            source: "2.jpg"
-                            size_hint_y: None
-                            height: "200dp"
-                            MDLabel:
-                                text: "[color=#ffffff][b][size=14]This is title of the book[/size][/b][/color]\n[color=#17deb3][size=11]Chương 1[/size][/color]"
-                                markup : True
-                                pos_hint: {'right': 1, 'top': 1}
-                                halign: "left"
-                                shorten: False
-
-                    MDGridLayout:
-                        cols: 1
-                        adaptive_height: True
-                        padding: dp(20), dp(20)
-                        spacing: dp(40)
-                        # md_bg_color: get_color_from_hex("#17deb3")
-                        valign: "middle"
-                        AnchorLayout:
-                            anchor_x: 'center'
-                            anchor_y:  'center'
-                            Button:
-                                text: 'Xem thêm'
-                                size_hint: None, None
-                                size: dp(120), dp(40)
-                                pos_hint: {'center_x': 0.5}
-
-                    Widget:
-                        id: separator
-                        size_hint_y: None
-                        height: 6
-                        padding: dp(0), dp(10)
-                    MDLabel:
-                        markup : True
-                        theme_text_color: "Hint"
-                        halign: "left"
-                        valign: "middle"
-                        text: "[size=20][color=#ffffff][b]TOP [/b][/color] [color=#000000][u][b]VIEW[/b][/color][/u][/size]"
-                        adaptive_height: True
-                        padding: dp(4), dp(2)
-                        canvas.before:
-                            Color:
-                                rgba: get_color_from_hex("#292929")
-                            Rectangle:
-                                pos: self.pos
-                                size: self.width*0.13,self.height
-                    MDGridLayout:
-                        cols: 3
-                        adaptive_height: True
-                        padding: dp(4), dp(4)
-                        spacing: dp(10)
-                        MDSmartTile:
-                            lines: 1
-                            source: "3.jpg"
-                            size_hint_y: None
-                            height: "170dp"
-                            MDLabel:
-                                text: "[color=#ffffff][b][size=14]This is title of...[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
-                                markup : True
-                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                                halign: "left"
-                                shorten: False
-                        MDSmartTile:
-                            lines: 1
-                            source: "2.jpg"
-                            size_hint_y: None
-                            height: "170dp"
-                            MDLabel:
-                                text: "[color=#ffffff][b][size=14]This is title of...[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
-                                markup : True
-                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                                halign: "left"
-                                shorten: False
-                        MDSmartTile:
-                            lines: 1
-                            source: "3.jpg"
-                            size_hint_y: None
-                            height: "170dp"
-                            MDLabel:
-                                text: "[color=#ffffff][b][size=14]This is title of...[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
-                                markup : True
-                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                                halign: "left"
-                                shorten: False
-                        MDSmartTile:
-                            lines: 1
-                            source: "2.jpg"
-                            size_hint_y: None
-                            height: "170dp"
-                            MDLabel:
-                                text: "[color=#ffffff][b][size=14]This is title of...[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
-                                markup : True
-                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                                halign: "left"
-                                shorten: False
-                        MDSmartTile:
-                            lines: 1
-                            source: "3.jpg"
-                            size_hint_y: None
-                            height: "170dp"
-                            MDLabel:
-                                text: "[color=#ffffff][b][size=14]This is title of...[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
-                                markup : True
-                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                                halign: "left"
-                                shorten: False
-                        MDSmartTile:
-                            lines: 1
-                            source: "2.jpg"
-                            size_hint_y: None
-                            height: "170dp"
-                            MDLabel:
-                                text: "[color=#ffffff][b][size=14]This is title of...[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
-                                markup : True
-                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                                halign: "left"
-                                shorten: False
-                        MDSmartTile:
-                            lines: 1
-                            source: "3.jpg"
-                            size_hint_y: None
-                            height: "170dp"
-                            MDLabel:
-                                text: "[color=#ffffff][b][size=14]This is title of...[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
-                                markup : True
-                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                                halign: "left"
-                                shorten: False
-
-    MDNavigationDrawer:
-        id: nav_drawer
-        radius: (0, 16, 16, 0)
-
-        MDNavigationDrawerMenu:
-            MDNavigationDrawerHeader:
-                title: "Admin"
-                title_font_size: "30sp"
-                text: "User Permission"
-                text_color: "#a3a3a3"
-                text_font_size: "14sp"
-                max_lines: 1
-                spacing: "10dp"
-                padding: 0, 0, 0, dp(5)
-                source: "33.jpg"
-            MDNavigationDrawerDivider:
-            MDNavigationDrawerLabel:
-                text: "Menu"
-            DrawerClickableItem:
-                text: "[size=14]Trang chủ[/size]"
-                markup: True
-                icon: "home"
-            DrawerClickableItem:
-                text: "[size=14]Bảng xếp hạng[/size]"
-                markup: True
-                icon: "medal"
-            DrawerClickableItem:
-                text: "[size=14]Danh sách[/size]"
-                markup: True
-                icon: "book-search"
-
-            MDNavigationDrawerDivider:
-
-            MDNavigationDrawerLabel:
-                text: "User"
-            DrawerClickableItem:
-                right_text: "[b][size=14]23[/size][/b]"
-                text: "[size=14]Theo dõi[/size]"
-                markup: True
-                selected: True
-                icon: "heart"
-            DrawerClickableItem:
-                right_text: "[b][size=14]0[/size][/b]"
-                text: "[size=14]Bài đăng[/size]"
-                markup: True
-                icon: "file-document-multiple-outline"
-            DrawerClickableItem:
-                text: "[size=14]Đổi mật khẩu[/size]"
-                markup: True
-                icon: "lock"
-            DrawerClickableItem:
-                text: "[size=14]Đăng xuất[/size]"
-                markup: True
-                icon: "logout"
-            MDNavigationDrawerDivider:
-
-<DrawerClickableItem@MDNavigationDrawerItem>
-    focus_color: "#e7e4c0"
-    text_color: "#4a4939"
-    icon_color: "#4a4939"
-    ripple_color: "#c5bdd2"
-    selected_color: "#0c6c4d"
 
 
-<DrawerLabelItem@MDNavigationDrawerItem>
-    text_color: "#4a4939"
-    icon_color: "#4a4939"
-    focus_behavior: False
-    selected_color: "#4a4939"
-    _no_ripple_effect: True
+MDScreen:
 
-<Slogin>:
-    name: 'Slogin'
+    MDTopAppBar:
+        id: topappbar
+        pos_hint: {"top": 1}
+        elevation: 4
+        title: "MDNavigationDrawer"
+        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
 
-    MDBoxLayout:
-        orientation: "vertical"
+    MDNavigationLayout:
 
-        MDTopAppBar:
-            title: "Login"
-            right_action_items: [["home", lambda x: setattr(root.manager, 'current', 'Strangchu')], ["power", lambda x: setattr(root.manager, 'current', 'Slogin')]]
+        MDScreenManager:
+            id: screen_manager
+            
+            Strangdoc:
+                on_enter: app.hide_top_app_bar()
+            Strangchu:
+            SinfoNovel: 
+            Slogin:
 
-        MDBoxLayout:
-            orientation: "vertical"
-            padding: "8dp"
+        MDNavigationDrawer:
+            id: nav_drawer
+            radius: (0, 16, 16, 0)
 
-            ScrollView:
-
-                MDBoxLayout:
-                    orientation: "vertical"
-                    id: posts
-                    spacing: "15dp"
-                    adaptive_height: True
-
-                    MDCard:
-                        size: 390, 400
-                        orientation: "vertical"
-                        pos_hint: {"center_x": .5, "center_y": .5}
-                        size_hint: None, None
-                        #size_hint_x: 0.5
-                        #size_hint_y: 0.8
-                        padding: 20
-                        spacing: 25
-
-                        MDLabel:
-                            halign: "center"
-                            text: "Login"
-
-                        MDTextField:
-                            id: username
-                            hint_text: "Username"
-                            helper_text: "Please type your username"
-                            helper_text_mode: "on_focus"
-
-                        MDTextField:
-                            id: password
-                            hint_text: "Password"
-                            helper_text: "Please type your password"
-                            helper_text_mode: "on_focus"
-                            password: True
-
-                        MDRaisedButton:
-                            pos_hint: {"center_x": .5, "center_y": .5}
-                            text: "LOGIN"
-                            on_press: root.login()
-
-                        MDRaisedButton:
-                            pos_hint: {"center_x": .5, "center_y": .5}
-                            text: "REGISTER"
-                            on_press: setattr(root.manager, 'current', 'registration')
+            ContentNavigationDrawer:
+                screen_manager: screen_manager
+                nav_drawer: nav_drawer

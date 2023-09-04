@@ -1,0 +1,307 @@
+<Strangdoc>:
+    name: 'Strangdoc'
+    on_enter: self.load_text()
+    MDBoxLayout:
+        orientation: "vertical"
+        # Srollview nội dung đọc
+        ScrollView:
+            id: scroll_view
+            size: (self.parent.width, self.parent.height)
+            do_scroll_x: False
+            do_scroll_y: True
+            MDGridLayout:
+                cols: 1
+                spacing:10,10
+                adaptive_height: True
+                id: layout_content
+                # on_double_tap: root.toogleMenu()
+                on_touch_down: root.scroll_view_touch_down(*args)
+                on_touch_up: root.scroll_view_touch_up(*args)
+                disabled: True
+                MDLabel:
+                    padding: dp(20), dp(10)
+                    text: "[b][size=17]Kẻ ngây thơ, [ref=Chú thích:Gì gì đó][u]người từng trải[/u][/ref], và câu chuyện tình của chúng tôi\nChương 01.5 - Nhật kí bí mật của Kurose Maria (3)\nĐộ dài: 218 từ - Cập nhật: 2 năm[/size][/b]"
+                    markup : True
+                    valign: "middle"
+                    halign: "center"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    on_ref_press: root.show_tooltip_dialog(args[1])
+                MDLabel:
+                    padding: dp(20), dp(0)
+                    id: text_label
+                    text: 
+                    theme_text_color: "Secondary"
+                    halign: "justify"
+                    adaptive_height: True
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    markup : True
+                    line_height:1.75
+        # widget:Start Menu bottom
+    MDBottomNavigation:
+        id: bottom_menu
+        text_color_active: "black"
+        text_color: "black"
+        adaptive_height: True
+        size_hint_y: None
+        # ẩn hiện menu
+        height: dp(0)
+        pos_hint: {"x":0}
+        MDBottomNavigationItem:
+            icon: 'chevron-double-left'
+        MDBottomNavigationItem:
+            icon: 'home'
+            on_tab_press: setattr(root.manager, 'current', 'Strangchu')
+        MDBottomNavigationItem:
+            icon: 'bookmark-multiple'
+            on_tab_press: nav_drawer_doc.set_state("open")
+        MDBottomNavigationItem:
+            icon: 'information-variant'
+            on_tab_press: root.toogleSettings()
+        MDBottomNavigationItem:
+            icon: 'chevron-double-right'
+    # widget:End Menu
+    FloatLayout:
+        MDIconButton:
+            id: btn_bookmark
+            icon: "bookmark"
+            icon_size: "34sp"
+            pos_hint: {'top': 1, 'right': 1}  # Đặt nút ở phía trên bên phải
+            on_press: root.bookmark_pressed()
+        # Bảng settings
+    FloatLayout:
+        id: parent_setting
+        pos_hint: {'center_y': 0.5, 'center_x': 1.6}
+        size_hint: 1, 0.48
+        adaptive_height: True
+        canvas:
+            Color:
+                rgb: get_color_from_hex("#c3bdf0")
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        
+        GridLayout:
+            id: widget_setting
+            cols: 1
+            pos_hint: {'x': 0, 'y': 0}
+            adaptive_height: True
+            padding: dp(10), dp(0)
+            spacing: dp(0)
+            canvas:
+                Color:
+                    rgb: get_color_from_hex("#ffffff")
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            canvas.before:
+                Color:
+                    rgba: .5, .5, .5, 1
+                Line:
+                    width: 2
+                    rectangle: self.x, self.y, self.width, self.height
+            MDLabel:
+                padding: 0, dp(10)
+                text: "[b]Theme:[/b]"
+                adaptive_height: True
+                markup: True
+            GridLayout:
+                cols: 3  # Số cột của grid layout
+                rows: 1
+                spacing: 5  # Khoảng cách giữa các ô vuông
+                padding: 0, 0
+                size_hint_y: None
+                height: 45
+                MDRectangleFlatButton:
+                    text: "Vani"
+                    theme_text_color: "Custom"
+                    text_color: "black"
+                    line_color: get_color_from_hex("#eae4d3")
+                    md_bg_color: get_color_from_hex("#eae4d3")
+                    canvas.before:
+                        Color:
+                            rgba: get_color_from_hex("#eae4d3")
+                        Line:
+                            width: 2
+                            rectangle: self.x, self.y,self.width, self.height
+                MDRectangleFlatButton:
+                    text: "White"
+                    theme_text_color: "Custom"
+                    text_color: "black"
+                    line_color: get_color_from_hex("#ffffff")
+                    md_bg_color: get_color_from_hex("#ffffff")
+                    canvas.before:
+                        Color:
+                            rgba: get_color_from_hex("#ffffff")
+                        Line:
+                            width: 2
+                            rectangle: self.x, self.y,self.width, self.height
+                MDRectangleFlatButton:
+                    text: "Black"
+                    theme_text_color: "Custom"
+                    text_color: "white"
+                    line_color: get_color_from_hex("#222222")
+                    md_bg_color: get_color_from_hex("#222222")
+                    border_radius: [0]
+                    canvas.before:
+                        Color:
+                            rgba: get_color_from_hex("#222222")
+                        Line:
+                            width: 2
+                            rectangle: self.x, self.y,self.width, self.height
+            MDLabel:
+                padding: 0, dp(10)
+                adaptive_height: True
+                text: "[b]Font:[/b]"
+                markup: True
+            AnchorLayout:
+                anchor_x:'center'
+                adaptive_height: True
+                anchor_y:'center'
+                MDDropDownItem:
+                    adaptive_height: True
+                    id: drop_item
+                    valign: 'middle'
+                    halign: 'center'
+                    text: 'Times New Roman'
+                    on_release: root.menu.open()
+            MDLabel:
+                adaptive_height: True
+                text: "[b]Cỡ chữ:[/b]"
+                markup: True
+            MDGridLayout:
+                padding: 0, dp(10)
+                cols: 3
+                halign: "center"
+                valign: "middle"
+                size_hint_y: None
+                adaptive_height: True
+                MDRectangleFlatButton:
+                    text: "-"
+                    theme_text_color: "Custom"
+                    text_color: "white"
+                    line_color: get_color_from_hex("#36a189")
+                    md_bg_color: get_color_from_hex("#36a189")
+                    theme_icon_color: "Custom"
+                    icon_color: "orange"
+                MDLabel:
+                    text: "15"
+                    halign: "center"
+                MDRectangleFlatButton:
+                    text: "+"
+                    theme_text_color: "Custom"
+                    text_color: "white"
+                    line_color: get_color_from_hex("#36a189")
+                    md_bg_color: get_color_from_hex("#36a189")
+                    theme_icon_color: "Custom"
+                    icon_color: "orange"
+            MDLabel:
+                
+                adaptive_height: True
+                text: "[b]Căn lề:[/b]"
+                markup: True
+            MDGridLayout:
+                padding: 0, dp(10)
+                cols: 3
+                halign: "center"
+                valign: "middle"
+                size_hint_y: None
+                adaptive_height: True
+                MDRectangleFlatButton:
+                    text: "-"
+                    theme_text_color: "Custom"
+                    text_color: "white"
+                    line_color: get_color_from_hex("#36a189")
+                    md_bg_color: get_color_from_hex("#36a189")
+                    theme_icon_color: "Custom"
+                    icon_color: "orange"
+                MDLabel:
+                    text: "15"
+                    halign: "center"
+                MDRectangleFlatButton:
+                    text: "+"
+                    theme_text_color: "Custom"
+                    text_color: "white"
+                    line_color: get_color_from_hex("#36a189")
+                    md_bg_color: get_color_from_hex("#36a189")
+                    theme_icon_color: "Custom"
+                    icon_color: "orange"
+    # Side menu
+    MDNavigationDrawer:
+        id: nav_drawer_doc
+        radius: (0, 16, 16, 0)
+        anim_type: None
+        MDNavigationDrawerMenu:
+            MDNavigationDrawerHeader:
+                title: ""
+                text: "Kẻ ngây thơ, người từng trải và câu chuyện tình của chúng tôi"
+                max_lines: 1
+                spacing: "4dp"
+                padding: 0, 0, 0, dp(5)
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_x: None
+                    # canvas.before:
+                    #     Color:
+                    #         rgba: get_color_from_hex("#222222") 
+                    #     Rectangle:
+                    #         pos: self.pos
+                    #         size: self.size
+                    Image:
+                        adaptive_width: True
+                        id: header_image
+                        source: '22.jpg'  # Thay đổi đường dẫn của hình ảnh tại đây
+                        size_hint: None, 1  # Vô hiệu hóa kích thước tự động
+            MDNavigationDrawerDivider:
+            MDNavigationDrawerLabel:
+                text: "Bookmark"
+            DrawerClickableItem:
+                right_text: "[size=11]20/08/2023[/size]"
+                text: "[size=12]Bookmark 1[/size]"
+                markup: True
+                icon: "bookmark-outline"
+            DrawerClickableItem:
+                right_text: "[size=11]22/08/2023[/size]"
+                text: "[size=12]Bookmark 2[/size]"
+                markup: True
+                icon: "bookmark-outline"
+            DrawerClickableItem:
+                right_text: "[size=11]31/08/2023[/size]"
+                text: "[size=12]Bookmark 3[/size]"
+                markup: True
+                icon: "bookmark-outline"
+
+            MDNavigationDrawerDivider:
+
+            MDNavigationDrawerLabel:
+                text: "Volume 01"
+            DrawerClickableItem:
+                right_text: "[b][size=11]Ch1.[/size][/b]"
+                text: "[size=12]Kẻ ngây thơ, người từng trải, và câu chuyện tình của chúng tôi Chương 01.5 - Nhật kí bí mật của Kurose Maria Độ dài: 218 từ - Cập nhật: 2 năm[/size]"
+                markup: True
+                selected: True
+                icon: "vector-point"
+            DrawerClickableItem:
+                right_text: "[b][size=11]Ch2.[/size][/b]"
+                text: "[size=12]Trạng Thái, Trưởng Thành và Thay Đổi[/size]"
+                markup: True
+                icon: "vector-point"
+            MDNavigationDrawerDivider:
+
+<DrawerClickableItem@MDNavigationDrawerItem>
+    focus_color: "#e7e4c0"
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    ripple_color: "#c5bdd2"
+    selected_color: "#0c6c4d"
+
+
+<DrawerLabelItem@MDNavigationDrawerItem>
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    focus_behavior: False
+    selected_color: "#4a4939"
+    _no_ripple_effect: True
+
+

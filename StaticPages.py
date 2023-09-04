@@ -6,3 +6,4 @@ file_path = None
 setting = 0
 menu = 1
 chapter= 0
+touch_pos = (0,0)

@@ -1,0 +1,320 @@
+<Strangchu>:
+    name: 'Strangchu'
+    # on_enter: self.load_post()
+    
+    MDBoxLayout:
+        orientation: "vertical"
+        Widget:
+            id: separator
+            size_hint_y: None
+            height: 60
+        MDBoxLayout:
+            orientation: "vertical"
+            padding: "8dp"
+
+            ScrollView:
+
+                MDGridLayout:
+                    cols: 1
+                    adaptive_height: True
+                    # md_bg_color: get_color_from_hex("#c3bdf0")
+                    spacing:10,10
+                    Widget:
+                        id: separator
+                        size_hint_y: None
+                        height: 6
+                        padding: dp(0), dp(10)
+                    MDLabel:
+                        markup : True
+                        theme_text_color: "Hint"
+                        halign: "left"
+                        valign: "middle"
+                        text: "[size=20][color=#ffffff][b]CHƯƠNG [/b][/color] [color=#000000][u][b]MỚI[/b][/color][/u][/size]"
+                        adaptive_height: True
+                        padding: dp(4), dp(2)
+                        canvas.before:
+                            Color:
+                                rgba: get_color_from_hex("#292929")
+                            Rectangle:
+                                pos: self.pos
+                                size: self.width*0.25,self.height
+                    MDGridLayout:
+                        cols: 3
+                        orientation: "lr-tb"
+                        size_hint_y: None
+                        row_default_height: 100
+                        row_force_default: True
+                        AsyncImage:
+                            source: "2.jpg"
+                            size_hint_x: None
+                            height: self.height
+                        BoxLayout:
+                            orientation: 'vertical'
+                            adaptive_height: True
+                            FloatLayout:
+                                adaptive_height: True
+                                MDLabel:
+                                    text: "[b][size=17]This is title of the book[/size][/b]"
+                                    markup : True
+                                    pos_hint: {'right': 1, 'top': 1}
+                                    halign: "left"
+                            AnchorLayout:
+                                anchor_x:'left'
+                                anchor_y:'center'    
+                                MDLabel:
+                                    text: "[size=12]This is description of the book.This is description of the book.This isdescription of the book.This is description of the book..This isdescription of the book.This is description of the book..This isdescription of the book.This is description of the book.[/size]"
+                                    markup : True
+                                    max_lines: 3
+                            AnchorLayout:
+                                anchor_x:'left'
+                                anchor_y:'bottom'   
+                                MDLabel:
+                                    markup : True
+                                    theme_text_color: "Hint"
+                                    halign: "left"
+                                    valign: "middle"
+                                    text: "[color=#ffffff][b][size=12]Chương 1[/size][/b][/color]"
+                                    adaptive_width: True
+                                    adaptive_height: True
+                                    padding: dp(4), dp(2)
+                                    canvas.before:
+                                        Color:
+                                            rgba: get_color_from_hex("#17deb3")
+                                        Rectangle:
+                                            pos: self.pos
+                                            size: self.width*0.9,self.height
+                    
+                    
+                    MDGridLayout:
+                        cols: 3
+                        orientation: "lr-tb"
+                        size_hint_y: None
+                        row_default_height: 100
+                        row_force_default: True
+                        AsyncImage:
+                            source: "3.jpg"
+                            size_hint_x: None
+                            height: self.height
+                        BoxLayout:
+                            orientation: 'vertical'
+                            adaptive_height: True
+                            FloatLayout:
+                                adaptive_height: True
+                                MDLabel:
+                                    text: "[b][size=17]This is title of the book[/size][/b]"
+                                    markup : True
+                                    pos_hint: {'right': 1, 'top': 1}
+                                    halign: "left"
+                            AnchorLayout:
+                                anchor_x:'left'
+                                anchor_y:'center'    
+                                MDLabel:
+                                    text: "[size=12]This is description of the book.This is description of the book.This isdescription of the book.This is description of the book..This isdescription of the book.This is description of the book..This isdescription of the book.This is description of the book.[/size]"
+                                    markup : True
+                                    max_lines: 3
+                            AnchorLayout:
+                                anchor_x:'left'
+                                anchor_y:'bottom'   
+                                MDLabel:
+                                    markup : True
+                                    theme_text_color: "Hint"
+                                    halign: "left"
+                                    valign: "middle"
+                                    text: "[color=#ffffff][b][size=12]Chương 1[/size][/b][/color]"
+                                    adaptive_width: True
+                                    adaptive_height: True
+                                    padding: dp(4), dp(2)
+                                    canvas.before:
+                                        Color:
+                                            rgba: get_color_from_hex("#17deb3")
+                                        Rectangle:
+                                            pos: self.pos
+                                            size: self.width*0.9,self.height
+                    Widget:
+                        id: separator
+                        size_hint_y: None
+                        height: 6
+                        padding: dp(0), dp(10)
+                    MDLabel:
+                        markup : True
+                        theme_text_color: "Hint"
+                        halign: "left"
+                        valign: "middle"
+                        text: "[size=20][color=#ffffff][b]SÁNG TÁC [/b][/color] [color=#000000][u][b]MỚI[/b][/color][/u][/size]"
+                        adaptive_height: True
+                        padding: dp(4), dp(2)
+                        canvas.before:
+                            Color:
+                                rgba: get_color_from_hex("#292929")
+                            Rectangle:
+                                pos: self.pos
+                                size: self.width*0.28,self.height
+                    MDGridLayout:
+                        cols: 2
+                        adaptive_height: True
+                        padding: dp(4), dp(4)
+                        spacing: dp(10)
+                        MDSmartTile:
+                            lines: 1
+                            source: "3.jpg"
+                            size_hint_y: None
+                            height: "200dp"
+                            on_press: setattr(root.manager, 'current', 'SinfoNovel')
+                            MDLabel:
+                                text: "[color=#ffffff][b][size=14]This is title of the book[/size][/b][/color]\n[color=#17deb3][size=11]Chương 1[/size][/color]"
+                                markup : True
+                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                                halign: "left"
+                                shorten: False
+
+                        MDSmartTile:
+                            source: "2.jpg"
+                            size_hint_y: None
+                            height: "200dp"
+                            MDLabel:
+                                text: "[color=#ffffff][b][size=14]This is title of the book[/size][/b][/color]\n[color=#17deb3][size=11]Chương 1[/size][/color]"
+                                markup : True
+                                pos_hint: {'right': 1, 'top': 1}
+                                halign: "left"
+                                shorten: False
+                        MDSmartTile:
+                            lines: 1
+                            source: "3.jpg"
+                            size_hint_y: None
+                            height: "200dp"
+                            MDLabel:
+                                text: "[color=#ffffff][b][size=14]This is title of the book[/size][/b][/color]\n[color=#17deb3][size=11]Chương 1[/size][/color]"
+                                markup : True
+                                pos_hint: {'right': 1, 'top': 1}
+                                halign: "left"
+                                shorten: False
+                        MDSmartTile:
+                            source: "2.jpg"
+                            size_hint_y: None
+                            height: "200dp"
+                            MDLabel:
+                                text: "[color=#ffffff][b][size=14]This is title of the book[/size][/b][/color]\n[color=#17deb3][size=11]Chương 1[/size][/color]"
+                                markup : True
+                                pos_hint: {'right': 1, 'top': 1}
+                                halign: "left"
+                                shorten: False
+
+                    MDGridLayout:
+                        cols: 1
+                        adaptive_height: True
+                        padding: dp(20), dp(20)
+                        spacing: dp(40)
+                        # md_bg_color: get_color_from_hex("#17deb3")
+                        valign: "middle"
+                        AnchorLayout:
+                            anchor_x: 'center'
+                            anchor_y:  'center'
+                            Button:
+                                text: 'Xem thêm'
+                                size_hint: None, None
+                                size: dp(120), dp(40)
+                                pos_hint: {'center_x': 0.5}
+
+                    Widget:
+                        id: separator
+                        size_hint_y: None
+                        height: 6
+                        padding: dp(0), dp(10)
+                    MDLabel:
+                        markup : True
+                        theme_text_color: "Hint"
+                        halign: "left"
+                        valign: "middle"
+                        text: "[size=20][color=#ffffff][b]TOP [/b][/color] [color=#000000][u][b]VIEW[/b][/color][/u][/size]"
+                        adaptive_height: True
+                        padding: dp(4), dp(2)
+                        canvas.before:
+                            Color:
+                                rgba: get_color_from_hex("#292929")
+                            Rectangle:
+                                pos: self.pos
+                                size: self.width*0.13,self.height
+                    MDGridLayout:
+                        cols: 3
+                        adaptive_height: True
+                        padding: dp(4), dp(4)
+                        spacing: dp(10)
+                        MDSmartTile:
+                            lines: 1
+                            source: "3.jpg"
+                            size_hint_y: None
+                            height: "170dp"
+                            MDLabel:
+                                text: "[color=#ffffff][b][size=14]This is title of...[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
+                                markup : True
+                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                                halign: "left"
+                                shorten: False
+                        MDSmartTile:
+                            lines: 1
+                            source: "2.jpg"
+                            size_hint_y: None
+                            height: "170dp"
+                            MDLabel:
+                                text: "[color=#ffffff][b][size=14]This is title of...[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
+                                markup : True
+                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                                halign: "left"
+                                shorten: False
+                        MDSmartTile:
+                            lines: 1
+                            source: "3.jpg"
+                            size_hint_y: None
+                            height: "170dp"
+                            MDLabel:
+                                text: "[color=#ffffff][b][size=14]This is title of...[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
+                                markup : True
+                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                                halign: "left"
+                                shorten: False
+                        MDSmartTile:
+                            lines: 1
+                            source: "2.jpg"
+                            size_hint_y: None
+                            height: "170dp"
+                            MDLabel:
+                                text: "[color=#ffffff][b][size=14]This is title of...[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
+                                markup : True
+                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                                halign: "left"
+                                shorten: False
+                        MDSmartTile:
+                            lines: 1
+                            source: "3.jpg"
+                            size_hint_y: None
+                            height: "170dp"
+                            MDLabel:
+                                text: "[color=#ffffff][b][size=14]This is title of...[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
+                                markup : True
+                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                                halign: "left"
+                                shorten: False
+                        MDSmartTile:
+                            lines: 1
+                            source: "2.jpg"
+                            size_hint_y: None
+                            height: "170dp"
+                            MDLabel:
+                                text: "[color=#ffffff][b][size=14]This is title of...[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
+                                markup : True
+                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                                halign: "left"
+                                shorten: False
+                        MDSmartTile:
+                            lines: 1
+                            source: "3.jpg"
+                            size_hint_y: None
+                            height: "170dp"
+                            MDLabel:
+                                text: "[color=#ffffff][b][size=14]This is title of...[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
+                                markup : True
+                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                                halign: "left"
+                                shorten: False
+
+    
