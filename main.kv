@@ -62,7 +62,7 @@
             max_lines: 1
             spacing: "10dp"
             padding: 0, 0, 0, dp(5)
-            source: "33.jpg"
+            source: "asset/user.jpg"
         MDNavigationDrawerDivider:
         MDNavigationDrawerLabel:
             text: "Menu"
@@ -81,7 +81,7 @@
                 root.nav_drawer.set_state("close")
                 root.screen_manager.current = "Strangdoc"
         DrawerClickableItem:
-            text: "[size=14]Danh sách[/size]"
+            text: "[size=14]Tìm kiếm[/size]"
             markup: True
             icon: "book-search"
             on_release: app.show_search()
@@ -96,10 +96,6 @@
             markup: True
             selected: True
             icon: "heart"
-        DrawerClickableItem:
-            text: "[size=14]Đổi mật khẩu[/size]"
-            markup: True
-            icon: "lock"
         DrawerClickableItem:
             text: "[size=14]Đăng xuất[/size]"
             markup: True
@@ -119,9 +115,9 @@ MDScreen:
         elevation: 4
         title: "DocLN"
         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
-
+    
     MDNavigationLayout:
-
+        padding: [0, topappbar.height, 0, 0]
         MDScreenManager:
             id: screen_manager
             

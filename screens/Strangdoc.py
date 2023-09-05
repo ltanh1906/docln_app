@@ -49,7 +49,7 @@ class Strangdoc(MDScreen):
         )
         self.menu.bind()
         label = MDLabel(
-                text="""[b][size=17]No game [ref=ABC:abc]no[/ref] life[/u]\nVolume 1 - Ch 1 - 3-1=Hopeless (3)\nĐộ dài: 518 từ - Cập nhật: 2 năm[/size][/b]""",
+                text="""[b][size=17]No game [ref=ABC:abc]no[/ref] life[/u]\nVolume 1 - Ch1: 3-1=Hopeless\nĐộ dài: 518 từ - Cập nhật: 2 năm[/size][/b]""",
                 padding= (dp(20), dp(10)),
                 markup = True,
                 valign= "middle",
@@ -64,12 +64,12 @@ class Strangdoc(MDScreen):
             —Rất, rất lâu về trước, có một thứ được gọi là 『Mặt trời』từng tồn tại.
             Tỏa ra ánh hào quang lửa trắng, nhuộm bầu trời với màu xanh trong – phải, thiên hạ đồn đại như vậy đấy.
             『Đại chiến 』giữa các vị thần và các sinh vật đã thiêu rụi mặt đất. Cả bầu trời trở thành một màn tro xám.
-            Bầu trời chìm trong tro xám và những Năng lượng Hành tinh—Hành lang Tinh linh trào ra, xung khắc lẫn nhau, khiến cho ánh sáng tỏa ra nhuộm bầu trời trong màu đỏ rực.
+            Bầu trời chìm trong tro xám và những Năng lượng Hành tinh — [ref=Hành lang tinh linh:Tinh linh khai lộ][u]* Hành lang Tinh linh[/u][/ref] trào ra, xung khắc lẫn nhau, khiến cho ánh sáng tỏa ra nhuộm bầu trời trong màu đỏ rực.
             Cái sắc đỏ này bao trùm lên cảnh tượng giết chóc tang thương không ngừng trên mặt đất. Hay có lẽ, chính ngôi sao này đang khóc thương, rỉ ra thứ máu đỏ tươi đó –
-            Trong bầu trời nhuốm máu này, chỉ có thứ tro màu lam ngọc kia tiếp tục rơi xuống.|img=asset/ngnl1.webp|
+            Trong bầu trời nhuốm máu này, chỉ có thứ tro màu lam ngọc kia tiếp tục rơi xuống.|img=asset/ngnl1.png|
             …
             Ivan nhìn lên bầu trời màu đỏ và nhăn mặt.
-            『Tro đen 』tỏa ra thứ ánh sáng màu lam ngọc rơi xuống mặt đất, bắt đầu chất đống lên.
+            Tro đen tỏa ra thứ ánh sáng màu lam ngọc rơi xuống mặt đất, bắt đầu chất đống lên.
             Ivan đứng ngây người suy nghĩ về những giới hạn về kiến thức mà con người nắm giữ.
             Loài người không thể cảm nhận được hạt tinh linh, nên họ không thể nào nhìn thấy thứ ánh sáng màu lam ngọc kia. Còn về lý do tại sao bầu trời bị nhuộm đỏ, thì có lẽ là bởi những ánh sáng phân cực hay lý do bí ẩn nào đó. Dẫu sao thì hạt tinh linh vốn mang màu xanh mà –
             Về phần tại sao con người lại có thể cảm nhận và kết nối được với Hành lang Tinh linh thì – chắc là có liên quan gì đó với ánh sáng cuối cùng tỏa ra từ Hành lang Tinh linh sau khi va chạm với thứ tro kia.
@@ -96,18 +96,19 @@ class Strangdoc(MDScreen):
                     )
                 )
             else:
-                self.ids.layout_content.add_widget(
-                    MDLabel(
+                label_content = MDLabel(
                         id="textTest"+str(i),
                         padding= (dp(20), dp(0)),
                         text = split_nd[i],
+                        markup = True,
                         font_size="50sp",
                         theme_text_color= "Secondary",
                         halign= "justify",
                         adaptive_height= True,
                         line_height=1.75,
-                    )
                 )
+                label_content.bind(on_ref_press=lambda *args: self.show_tooltip_dialog(args[1]))
+                self.ids.layout_content.add_widget(label_content)
 
     def bookmark_pressed(self):
         children_list = self.ids.layout_content.children

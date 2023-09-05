@@ -24,26 +24,47 @@
                         size_hint_y: None
                         height: 6
                         padding: dp(0), dp(10)
-                    MDLabel:
-                        markup : True
-                        theme_text_color: "Hint"
-                        halign: "left"
-                        valign: "middle"
-                        text: "[size=20][color=#ffffff][b]CHƯƠNG [/b][/color] [color=#000000][u][b]MỚI[/b][/color][/u][/size]"
+                    MDBoxLayout:
+                        orientation: "horizontal"
                         adaptive_height: True
-                        padding: dp(4), dp(2)
-                        canvas.before:
-                            Color:
-                                rgba: get_color_from_hex("#292929")
-                            Rectangle:
-                                pos: self.pos
-                                size: self.width*0.25,self.height
+                        
+                        MDLabel:
+                            text: "[b]CHƯƠNG[/b]"
+                            padding: dp(5), dp(2)
+                            size_hint_y: None  # Tắt size_hint_y để đặt chiều cao cố định
+                            size_hint_x: None  # Tắt size_hint_y để đặt chiều cao cố định
+                            halign: "center"
+                            font_size: 20
+                            theme_text_color: "Custom" 
+                            text_color: "white"
+                            markup: True
+                            text_size: self.width, None  # Đặt text_size theo chiều ngang và không giới hạn chiều cao
+                            height: self.texture_size[1]  # Đặt chiều cao dựa trên chiều cao của văn bản
+                            width: (len(self.text)-7) * 16  # Đặt chiều cao dựa trên chiều cao của văn bản
+                            # adaptive_width: True
+                            canvas.before:
+                                Color:
+                                    rgba: get_color_from_hex("#292929")
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                        MDLabel:
+                            text: "[b][u]MỚI[/u][/b]"
+                            padding: dp(5), dp(2)
+                            halign: "left"
+                            font_size: 20
+                            theme_text_color: "Custom" 
+                            text_color: "black"
+                            markup: True
+                            adaptive_height: True
+                            size_hint_y: None 
                     MDGridLayout:
                         cols: 3
                         orientation: "lr-tb"
                         size_hint_y: None
                         row_default_height: 100
                         row_force_default: True
+                        adaptive_height: True
                         AsyncImage:
                             source: "asset/86.jpg"
                             size_hint_x: None
@@ -135,20 +156,40 @@
                         size_hint_y: None
                         height: 6
                         padding: dp(0), dp(10)
-                    MDLabel:
-                        markup : True
-                        theme_text_color: "Hint"
-                        halign: "left"
-                        valign: "middle"
-                        text: "[size=20][color=#ffffff][b]SÁNG TÁC [/b][/color] [color=#000000][u][b]MỚI[/b][/color][/u][/size]"
+                    MDBoxLayout:
+                        orientation: "horizontal"
                         adaptive_height: True
-                        padding: dp(4), dp(2)
-                        canvas.before:
-                            Color:
-                                rgba: get_color_from_hex("#292929")
-                            Rectangle:
-                                pos: self.pos
-                                size: self.width*0.28,self.height
+                        
+                        MDLabel:
+                            text: "[b]SÁNG TÁC[/b]"
+                            padding: dp(5), dp(2)
+                            size_hint_y: None  # Tắt size_hint_y để đặt chiều cao cố định
+                            size_hint_x: None  # Tắt size_hint_y để đặt chiều cao cố định
+                            halign: "center"
+                            font_size: 20
+                            theme_text_color: "Custom" 
+                            text_color: "white"
+                            markup: True
+                            text_size: self.width, None  # Đặt text_size theo chiều ngang và không giới hạn chiều cao
+                            height: self.texture_size[1]  # Đặt chiều cao dựa trên chiều cao của văn bản
+                            width: (len(self.text)-8) * 16  # Đặt chiều cao dựa trên chiều cao của văn bản
+                            # adaptive_width: True
+                            canvas.before:
+                                Color:
+                                    rgba: get_color_from_hex("#292929")
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                        MDLabel:
+                            text: "[b][u]MỚI[/u][/b]"
+                            padding: dp(5), dp(2)
+                            halign: "left"
+                            font_size: 20
+                            theme_text_color: "Custom" 
+                            text_color: "black"
+                            markup: True
+                            adaptive_height: True
+                            size_hint_y: None 
                     MDGridLayout:
                         cols: 2
                         adaptive_height: True
@@ -220,20 +261,40 @@
                         size_hint_y: None
                         height: 6
                         padding: dp(0), dp(10)
-                    MDLabel:
-                        markup : True
-                        theme_text_color: "Hint"
-                        halign: "left"
-                        valign: "middle"
-                        text: "[size=20][color=#ffffff][b]TOP [/b][/color] [color=#000000][u][b]VIEW[/b][/color][/u][/size]"
+                    MDBoxLayout:
+                        orientation: "horizontal"
                         adaptive_height: True
-                        padding: dp(4), dp(2)
-                        canvas.before:
-                            Color:
-                                rgba: get_color_from_hex("#292929")
-                            Rectangle:
-                                pos: self.pos
-                                size: self.width*0.13,self.height
+                        
+                        MDLabel:
+                            text: "[b]TOP[/b]"
+                            padding: dp(5), dp(2)
+                            size_hint_y: None  # Tắt size_hint_y để đặt chiều cao cố định
+                            size_hint_x: None  # Tắt size_hint_y để đặt chiều cao cố định
+                            halign: "center"
+                            font_size: 20
+                            theme_text_color: "Custom" 
+                            text_color: "white"
+                            markup: True
+                            text_size: self.width, None  # Đặt text_size theo chiều ngang và không giới hạn chiều cao
+                            height: self.texture_size[1]  # Đặt chiều cao dựa trên chiều cao của văn bản
+                            width: (len(self.text)-7) * 16  # Đặt chiều cao dựa trên chiều cao của văn bản
+                            # adaptive_width: True
+                            canvas.before:
+                                Color:
+                                    rgba: get_color_from_hex("#292929")
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                        MDLabel:
+                            text: "[b][u]VIEW[/u][/b]"
+                            padding: dp(5), dp(2)
+                            halign: "left"
+                            font_size: 20
+                            theme_text_color: "Custom" 
+                            text_color: "black"
+                            markup: True
+                            adaptive_height: True
+                            size_hint_y: None 
                     MDGridLayout:
                         cols: 3
                         adaptive_height: True

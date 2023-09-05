@@ -71,7 +71,7 @@ class SinfoNovel(MDScreen):
     def draw_review(self):
         self.ids.test_box.clear_widgets()
         box = MDGridLayout(adaptive_height=True, size_hint_y=None, cols=1)
-        for i in range(3):
+        for i in range(2):
             grid = MDGridLayout(adaptive_height=True,cols=2)
             user_label = MDLabel(
                 text="[b]User 0001[/b]",
@@ -96,7 +96,7 @@ class SinfoNovel(MDScreen):
             grid.add_widget(grid_child)
             # MDLabel cho đánh giá
             review_label = MDLabel(
-                text="Truyện oke, đọc giải trí ...",
+                text="This is review content ...",
                 padding=(dp(10), dp(0)),
                 halign="left",
                 size_hint_y=None,

@@ -15,8 +15,8 @@
                 adaptive_height: True
                 id: layout_content
                 # on_double_tap: root.toogleMenu()
-                # on_touch_down: root.scroll_view_touch_down(*args)
-                # on_touch_up: root.scroll_view_touch_up(*args)
+                on_touch_down: root.scroll_view_touch_down(*args)
+                on_touch_up: root.scroll_view_touch_up(*args)
                 # disabled: True
                 MDLabel:
                     padding: dp(20), dp(10)
@@ -234,8 +234,8 @@
         anim_type: None
         MDNavigationDrawerMenu:
             MDNavigationDrawerHeader:
-                title: "No gamge no life"
-                text: "No gamge no life"
+                title: "No game no life"
+                text: "Kamiya Yuu"
                 max_lines: 1
                 spacing: "4dp"
                 padding: 0, 0, 0, dp(5)
