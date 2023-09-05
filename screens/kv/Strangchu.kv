@@ -45,7 +45,7 @@
                         row_default_height: 100
                         row_force_default: True
                         AsyncImage:
-                            source: "2.jpg"
+                            source: "asset/86.jpg"
                             size_hint_x: None
                             height: self.height
                         BoxLayout:
@@ -54,7 +54,7 @@
                             FloatLayout:
                                 adaptive_height: True
                                 MDLabel:
-                                    text: "[b][size=17]This is title of the book[/size][/b]"
+                                    text: "[b][size=17]86 -eightysix-[/size][/b]"
                                     markup : True
                                     pos_hint: {'right': 1, 'top': 1}
                                     halign: "left"
@@ -62,7 +62,7 @@
                                 anchor_x:'left'
                                 anchor_y:'center'    
                                 MDLabel:
-                                    text: "[size=12]This is description of the book.This is description of the book.This isdescription of the book.This is description of the book..This isdescription of the book.This is description of the book..This isdescription of the book.This is description of the book.[/size]"
+                                    text: """[size=12]Cộng hòa San Magnolia.\nQuốc gia này từ lâu đã chịu phải ách xâm lược từ những Legion - chiến xa không người lái của phía Đế quốc. Để đáp trả lại mối đe doạ đó, nước Cộng hoà cũng phát triển thành công thứ công nghệ tương tự và đẩy lùi sự tấn công của kẻ thù mà không chịu thương vong gì. [/size] """
                                     markup : True
                                     max_lines: 3
                             AnchorLayout:
@@ -92,7 +92,7 @@
                         row_default_height: 100
                         row_force_default: True
                         AsyncImage:
-                            source: "3.jpg"
+                            source: "asset/eliteclass.jpg"
                             size_hint_x: None
                             height: self.height
                         BoxLayout:
@@ -101,7 +101,7 @@
                             FloatLayout:
                                 adaptive_height: True
                                 MDLabel:
-                                    text: "[b][size=17]This is title of the book[/size][/b]"
+                                    text: "[b][size=17]Classroom of the Elite - 2nd[/size][/b]"
                                     markup : True
                                     pos_hint: {'right': 1, 'top': 1}
                                     halign: "left"
@@ -109,7 +109,7 @@
                                 anchor_x:'left'
                                 anchor_y:'center'    
                                 MDLabel:
-                                    text: "[size=12]This is description of the book.This is description of the book.This isdescription of the book.This is description of the book..This isdescription of the book.This is description of the book..This isdescription of the book.This is description of the book.[/size]"
+                                    text: "[size=12]Sau khi hoàn thành xong [Bài thi đặc biệt] cuối năm nhất và thoát khỏi dã tâm của Tsukishiro, Ayanokouji lên năm hai Cao Trung Koudo Ikusei bình yên vô sự. Sau kì nghỉ xuân ngắn ngủi, lễ nhập học được tổ chức. Tháng 4 năm đó những học sinh năm nhất dần dần lộ diện. Những học sinh mới với vô vàn tính cách độc đáo không kém cạnh gì năm hai, dự rằng sẽ mang một làn sóng mới vào trường cao trung này.[/size]"
                                     markup : True
                                     max_lines: 3
                             AnchorLayout:
@@ -156,44 +156,44 @@
                         spacing: dp(10)
                         MDSmartTile:
                             lines: 1
-                            source: "3.jpg"
+                            source: "asset/ngnl.png"
                             size_hint_y: None
-                            height: "200dp"
+                            height: "250dp"
                             on_press: setattr(root.manager, 'current', 'SinfoNovel')
                             MDLabel:
-                                text: "[color=#ffffff][b][size=14]This is title of the book[/size][/b][/color]\n[color=#17deb3][size=11]Chương 1[/size][/color]"
+                                text: "[color=#ffffff][b][size=14]No game no life[/size][/b][/color]\n[color=#17deb3][size=11]Chương 1[/size][/color]"
                                 markup : True
                                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                                 halign: "left"
                                 shorten: False
 
                         MDSmartTile:
-                            source: "2.jpg"
+                            source: "asset/tantei.jpg"
                             size_hint_y: None
-                            height: "200dp"
+                            height: "250dp"
                             MDLabel:
-                                text: "[color=#ffffff][b][size=14]This is title of the book[/size][/b][/color]\n[color=#17deb3][size=11]Chương 1[/size][/color]"
+                                text: "[color=#ffffff][b][size=14]Thám tử đã chết[/size][/b][/color]\n[color=#17deb3][size=11]Chương 1[/size][/color]"
                                 markup : True
                                 pos_hint: {'right': 1, 'top': 1}
                                 halign: "left"
                                 shorten: False
                         MDSmartTile:
                             lines: 1
-                            source: "3.jpg"
+                            source: "asset/shimotsuki.jpg"
                             size_hint_y: None
-                            height: "200dp"
+                            height: "250dp"
                             MDLabel:
-                                text: "[color=#ffffff][b][size=14]This is title of the book[/size][/b][/color]\n[color=#17deb3][size=11]Chương 1[/size][/color]"
+                                text: "[color=#ffffff][b][size=14]Shimotsuki wa Mob...[/size][/b][/color]\n[color=#17deb3][size=11]Chương 1[/size][/color]"
                                 markup : True
                                 pos_hint: {'right': 1, 'top': 1}
                                 halign: "left"
                                 shorten: False
                         MDSmartTile:
-                            source: "2.jpg"
+                            source: "asset/koibitowa.jpg"
                             size_hint_y: None
-                            height: "200dp"
+                            height: "250dp"
                             MDLabel:
-                                text: "[color=#ffffff][b][size=14]This is title of the book[/size][/b][/color]\n[color=#17deb3][size=11]Chương 1[/size][/color]"
+                                text: "[color=#ffffff][b][size=14]Koibito wo Netorare..[/size][/b][/color]\n[color=#17deb3][size=11]Chương 1[/size][/color]"
                                 markup : True
                                 pos_hint: {'right': 1, 'top': 1}
                                 halign: "left"
@@ -237,81 +237,70 @@
                     MDGridLayout:
                         cols: 3
                         adaptive_height: True
-                        padding: dp(4), dp(4)
+                        padding: dp(2), dp(4)
                         spacing: dp(10)
                         MDSmartTile:
                             lines: 1
-                            source: "3.jpg"
+                            source: "asset/liar.jpg"
                             size_hint_y: None
                             height: "170dp"
                             MDLabel:
-                                text: "[color=#ffffff][b][size=14]This is title of...[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
+                                text: "[color=#ffffff][b][size=14]Liar Liar[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
                                 markup : True
                                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                                 halign: "left"
                                 shorten: False
                         MDSmartTile:
                             lines: 1
-                            source: "2.jpg"
+                            source: "asset/re0.jpg"
                             size_hint_y: None
                             height: "170dp"
                             MDLabel:
-                                text: "[color=#ffffff][b][size=14]This is title of...[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
+                                text: "[color=#ffffff][b][size=14]Re:Zero[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
                                 markup : True
                                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                                 halign: "left"
                                 shorten: False
                         MDSmartTile:
                             lines: 1
-                            source: "3.jpg"
+                            source: "asset/dal.jpg"
                             size_hint_y: None
                             height: "170dp"
                             MDLabel:
-                                text: "[color=#ffffff][b][size=14]This is title of...[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
+                                text: "[color=#ffffff][b][size=14]Date a live[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
                                 markup : True
                                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                                 halign: "left"
                                 shorten: False
                         MDSmartTile:
                             lines: 1
-                            source: "2.jpg"
+                            source: "asset/kengaytho.jpg"
                             size_hint_y: None
                             height: "170dp"
                             MDLabel:
-                                text: "[color=#ffffff][b][size=14]This is title of...[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
+                                text: "[color=#ffffff][b][size=14]Our Dating Story[/size][/b][/color][color=#17deb3][size=12][/size][/color]"
                                 markup : True
                                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                                 halign: "left"
                                 shorten: False
                         MDSmartTile:
                             lines: 1
-                            source: "3.jpg"
+                            source: "asset/maougakuin.jpg"
                             size_hint_y: None
                             height: "170dp"
                             MDLabel:
-                                text: "[color=#ffffff][b][size=14]This is title of...[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
+                                text: "[color=#ffffff][b][size=14]Maou Gakuin[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
                                 markup : True
                                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                                 halign: "left"
                                 shorten: False
                         MDSmartTile:
                             lines: 1
-                            source: "2.jpg"
+                            source: "asset/rose.jpg"
                             size_hint_y: None
                             height: "170dp"
                             MDLabel:
-                                text: "[color=#ffffff][b][size=14]This is title of...[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
-                                markup : True
-                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                                halign: "left"
-                                shorten: False
-                        MDSmartTile:
-                            lines: 1
-                            source: "3.jpg"
-                            size_hint_y: None
-                            height: "170dp"
-                            MDLabel:
-                                text: "[color=#ffffff][b][size=14]This is title of...[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
+                                text: "[color=#ffffff][b][size=14]Rose Princess[/size][/b][/color]\n[color=#17deb3][size=12]Chương 1[/size][/color]"
                                 markup : True
                                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                                 halign: "left"

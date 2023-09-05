@@ -1,0 +1,9 @@
+<Content>
+    padding: dp(20), dp(10)
+    text: root.text
+    markup : True
+    valign: "middle"
+    halign: "center"
+    size_hint_y: None
+    height: self.texture_size[1]
+    on_ref_press: root.show_tooltip_dialog(args[1])

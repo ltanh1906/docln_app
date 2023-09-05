@@ -39,7 +39,7 @@ class SinfoNovel(MDScreen):
         self.ids.volume_list.clear_widgets()
         for i in range(3):
             box = MDBoxLayout(adaptive_height=True, orientation="vertical")
-            item_texts = ["Mở đầu: Sự dối trá, hư cấu và lời tuyên bố khai chiến.", "Chương 1: Cuộc gặp gỡ của những kẻ dối trá và xung đột. (Part1)", "Chương 2: Sự ra đời của 7 sao giả. (Part1)"]
+            item_texts = ["Ch1: 3-1=Hopeless", "Ch2: 1×1=Aimless", "Ch3: 1+1=Deathless", "Ch4: 1÷2=Companionless", "Ch5: 1÷0=Etherealness"]
 
             for text in item_texts:
                 list_item = OneLineIconListItem(

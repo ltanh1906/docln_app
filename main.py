@@ -41,6 +41,7 @@ class ContentNavigationDrawer(MDScrollView):
     nav_drawer = ObjectProperty()
 class DocLNApp(MDApp):
     def build(self):
+        # Window.borderless = True
         kvfile = Builder.load_file('main.kv')
         return kvfile
     # def on_start(self):

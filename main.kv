@@ -3,13 +3,11 @@
 #: import Slogin screens.Slogin
 #: import Strangdoc screens.Strangdoc
 #: import SinfoNovel screens.SinfoNovel
-#: import SideMenu screens.SideMenu
 
-#: include screens/Strangchu.kv
-#: include screens/Strangdoc.kv
-#: include screens/Slogin.kv
-#: include screens/SinfoNovel.kv
-#: include screens/SideMenu.kv
+#: include screens/kv/Strangchu.kv
+#: include screens/kv/Strangdoc.kv
+#: include screens/kv/Slogin.kv
+#: include screens/kv/SinfoNovel.kv
 # ScreenManager:
 #     Strangdoc:
 #     Strangchu:
@@ -119,7 +117,7 @@ MDScreen:
         id: topappbar
         pos_hint: {"top": 1}
         elevation: 4
-        title: "MDNavigationDrawer"
+        title: "DocLN"
         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
 
     MDNavigationLayout:
